@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<title>Home Manager2.0</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<meta name="author" content="ralphi Ergolding">
+	<meta http-equiv="content-language" content="de">
+	<meta name="author" content="ralphi Ergolding">
+	<meta name="description" content="SMA Smartmeter.">
+	<meta property="og:description" content="SMA Smartmeter.">
+	<!-- use public img-link -->
+	<meta property="og:image" content="img_HM2_linkicon.jpeg">
+	<meta property="og:title" content="Home Manager2.0">
+	<meta property="og:locale" content="de_DE">
+	<meta property="og:url" content="http://localhost/index.html">
+	
+	
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<style>
+
+    .einheit {
+      text-align: left;
+    }
+    
+		.werte {
+		  text-align: right;
+		}
+
+		p {
+			text-align: center;
+			font-weight:bold;
+		}
+		th, td {
+		  border-bottom: 1px solid grey; 
+		  padding-left: 5% ;
+		  padding-right: 3% ;
+		  padding-bottom: 3% ;
+		  padding: 2% ;
+		}
+		tr { line-height: 10px; }
+		th {
+			background: #00cccc;
+			color: #fff;
+			text-transform: uppercase;
+			font-size: 20px;
+		}
+
+	</style>
+</head>
+<body>
+
+<div id="side1" data-role="page" data-theme="a">
+
+	<div data-role="header">
+		<!--<img src="img_HM2_header.png" width="100%" />-->
+		<h1>Home Manager 2.0<sub><small>v0.1</small></sub></h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content" id="main">
+
+		<table id="table" width="100%" class="table-stripe">
+			<thead class="">
+			<tr><th></th><th class="werte" >Val</th><th class="einheit" >Unit</th></tr>
+			</thead>
+			<tbody id="sma"></tbody>
+			<tbody id="hm2"></tbody>
+		</table>
+
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy; by ralphi 2024</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+<script>
+
+	var link_get = "HM2_ajax.php";
+	//var link_sma = "sma_ajax.php";
+
+	// *************************************************
+	// ******* GET DATA START UND  LOOP  ++++++++++++++++
+	// *************************************************		
+	function get_data() {	
+	
+		$.get(link_get, function(data){		
+			$("#hm2").html(data);
+		});
+	}	
+	get_data();
+	setInterval(get_data, 1000);
+	/*
+	// STP10.0
+	function get_data_sma() {	
+	
+		$.get(link_sma, function(data){		
+			$("#sma").html(data);
+		});
+	}	
+	get_data_sma();
+	setInterval(get_data_sma, 2000);
+	*/
+	
+</script>
+</html>
